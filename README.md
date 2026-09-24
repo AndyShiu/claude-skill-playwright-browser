@@ -62,6 +62,8 @@ git clone https://github.com/AndyShiu/claude-skill-playwright-browser.git <專�
 
 Windows 的個人目錄是 `%USERPROFILE%\.claude\skills\playwright-browser`。
 
+> **Windows 使用者注意（Git Bash）**：Claude Code 在 Windows 預設用 Git Bash，它會把 `/` 開頭的參數自動改成 Windows 路徑（例如 `--until-url /dashboard` 會變成 `C:/Program Files/Git/dashboard`）。skill 已經會自動還原常用的參數，但如果你**手動**執行其他指令遇到類似狀況，可以把參數改成不以 `/` 開頭（例如 `--until-url dashboard`），或在指令前加 `MSYS_NO_PATHCONV=1`，也可以改用 PowerShell / cmd 執行。
+
 **2. 就這樣。** 第一次使用時，Claude 會偵測到還沒安裝執行環境，告訴你之後自動安裝。想先裝好也可以：
 
 ```bash
@@ -135,7 +137,7 @@ node "$PW" inspect --url https://example.com --click "Pricing"        # 用文�
 node "$PW" shot    --url https://example.com --viewport desktop,mobile --full
 node "$PW" audit   --url https://example.com                           # 完整健檢，產出 report.md
 node "$PW" run     --script flow.mjs --url https://example.com         # 自訂操作流程
-node "$PW" login   --session admin --url https://example.com/login     # 開視窗讓你登入
+node "$PW" login   --session admin --url https://example.com/login --until-url dashboard   # 開視窗讓你登入，進到 dashboard 自動存檔
 node "$PW" sessions                                                    # 列出已存的登入狀態
 node "$PW" clean   --days 0                                            # 清掉所有暫存截圖
 ```

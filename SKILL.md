@@ -46,7 +46,7 @@ pw shot  --url <url> [--viewport desktop,mobile|all|1366x768] [--full] [--select
 pw audit --url <url> [--viewport ...] [--skip links,axe,perf,visual,layout,images,console,network]
           [--external-links] [--max-links 100] [--update-baseline] [--name <label>]
 pw run   --script <file.mjs> [--url <start-url>] [--viewport mobile] [--full] [--trace]   # one viewport per call
-pw login --session <name> --url <login-url> [--until-url <substring>]
+pw login --session <name> --url <login-url> [--until-url <path-substring>]
 pw diff  <baseline.png> <current.png>
 pw sessions [--delete <name>]
 pw clean [--days 7]
@@ -109,7 +109,7 @@ Things that trip scripts up:
 
 Never put credentials in scripts or in this skill. Instead:
 
-1. `pw login --session <name> --url <login-page>` opens a visible browser; the user logs in themselves, then closes the window (or pass `--until-url /dashboard` to save automatically once the page path contains that text and no login form is showing).
+1. `pw login --session <name> --url <login-page>` opens a visible browser; the user logs in themselves, then closes the window (or pass `--until-url dashboard` to save automatically once the page path contains that text and no login form is showing — write it without a leading `/`, because Git Bash on Windows rewrites arguments that start with `/` into Windows paths).
 2. Reuse it with `--session <name>` on `shot` / `audit` / `run`.
 
 Sessions are saved outside any project at `~/.claude/playwright/sessions/<project>/<name>.json` (mode 600) so they can't be committed. Before concluding a site needs a fresh login, run `sessions` — it lists every saved session with the hosts it covers. If you're working from a different directory than where the session was created, `--session <name>` still finds it when exactly one project has that name for the target host (otherwise add `--project <slug>`).

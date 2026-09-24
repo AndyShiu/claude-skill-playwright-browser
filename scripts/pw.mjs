@@ -38,7 +38,15 @@ for (let i = 1; i < argv.length; i++) {
     else push(k, true);
   } else opts._.push(a);
 }
+// Git Bash on Windows rewrites arguments that start with "/" into Windows paths
+// (--until-url /dashboard -> C:/Program Files/Git/dashboard). Undo that for our options.
+const MSYS_MANGLED = /^[A-Za-z]:[\\/](?:Program Files(?: \(x86\))?[\\/])?Git(?:[\\/](?:usr|mingw64))?(?=[\\/]|$)/i;
+function unmangle(v) {
+  if (process.platform !== 'win32' || typeof v !== 'string' || !MSYS_MANGLED.test(v)) return v;
+  return v.replace(MSYS_MANGLED, '').replace(/\\/g, '/') || '/';
+}
 function push(k, v) {
+  if (['until-url', 'click', 'wait-for', 'selector', 'mask'].includes(k)) v = unmangle(v);
   if (opts[k] === undefined) opts[k] = v;
   else opts[k] = [].concat(opts[k], v);
 }
@@ -320,7 +328,8 @@ async function cmdShot() {
       for (const url of urls) {
         const page = await context.newPage();
         const nav = await gotoAndSettle(page, url);
-        const file = path.join(runDir, `${safe(opts.name || url)}_${vp.name}${opts.full ? '_full' : ''}.png`);
+        const kind = opts.selector ? '_element' : opts.full ? '_full' : '';   // --selector wins over --full
+        const file = path.join(runDir, `${safe(opts.name || url)}_${vp.name}${kind}.png`);
         await screenshot(page, file);
         const warnings = await pageWarnings(page);
         shots.push({ url, viewport: vp.name, file, ...nav, ...(warnings.length && { warnings }) });
