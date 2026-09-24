@@ -61,6 +61,22 @@ Screenshot every page in the admin menu and save them to my Desktop
 
 When both would work, Claude asks which one you prefer and suggests one.
 
+#### Head-to-head test
+
+Same task for both, run by two fresh Claude agents: *"take mobile screenshots of these 3 report pages"* on a logged-in internal admin app (URLs given).
+
+| | Claude in Chrome | This skill |
+|---|---|---|
+| Tokens | 48,045 | 48,853 |
+| Time | 93 s | **47 s** |
+| Tool calls | 9 | 7 |
+| Mobile size | 500×667 — Chrome windows can't go narrower than 500 px | **390×844** (real iPhone size, 3× scale) |
+| Output | JPEG in a temp folder, had to be moved | PNG saved where you asked |
+| Full-page capture | Not available | Available |
+| Login | Your Chrome's existing login | Session saved earlier with this skill |
+
+**Takeaways**: tokens were a wash for a small job like this — most of both totals is each agent's fixed overhead. The skill was twice as fast and produced true phone-width screenshots; Chrome can't emulate widths below ~500 px, so layout bugs that only appear at 390 px are out of its reach. One run each with URLs provided — tasks with more pages or steps should favour the skill further, but that part hasn't been measured.
+
 ---
 
 ## Install
