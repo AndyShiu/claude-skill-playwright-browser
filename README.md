@@ -2,6 +2,13 @@
 
 **English** | [繁體中文](README.zh-TW.md)
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/AndyShiu/claude-skill-playwright-browser)](https://github.com/AndyShiu/claude-skill-playwright-browser/releases)
+![Node.js ≥18](https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white)
+![Playwright 1.63](https://img.shields.io/badge/playwright-1.63-2EAD33?logo=playwright&logoColor=white)
+![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
+![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-D97757)
+
 Gives [Claude Code](https://claude.com/claude-code) a **browser that runs in the background**. Ask in plain language — "screenshot the homepage on mobile", "why does the Submit button do nothing on this page?", "health-check the checkout page" — and Claude opens a browser, clicks around, takes screenshots, runs checks, and hands you the results and files. It never touches the browser you're using, and it works in any project (frontend, backend, even non-Node projects).
 
 ---
@@ -16,6 +23,16 @@ Gives [Claude Code](https://claude.com/claude-code) a **browser that runs in the
 | 🧭 **UI flows** | Log in, click through menus, fill forms, page through lists, assert results — with a screenshot at each step and an automatic screenshot on failure |
 | 🔐 **Sites that need login** | You log in once yourself; Claude then reuses that session in the background (your password is never stored) |
 | 🧪 **Real tests** | When you want it, turn a flow into a Playwright Test in your project and run it in CI |
+
+### See it in action
+
+![Screenshots on every screen size](docs/images/responsive-en.png)
+
+![Frontend health check](docs/images/audit-en.png)
+
+![Before / after visual comparison](docs/images/diff-en.png)
+
+<sub>All images were produced by this skill against a small demo site.</sub>
 
 ## Examples
 
@@ -159,4 +176,10 @@ scripts/pw.mjs               The CLI: inspect / shot / audit / run / login / dif
 scripts/setup.mjs            Cross-platform one-time setup
 references/analysis.md       How to read audit results, thresholds, tracing issues to code
 references/project-tests.md  Turning flows into real project tests (Playwright Test + CI)
+docs/images/                 README screenshots (made with this skill)
+CHANGELOG.md                 Release notes
 ```
+
+## License
+
+[MIT](LICENSE) © AndyShiu · See [CHANGELOG.md](CHANGELOG.md) for release notes.

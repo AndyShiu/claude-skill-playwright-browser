@@ -1,0 +1,15 @@
+name: Feature request / 功能建議
+description: Suggest an improvement / 建議新功能或改進
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you want to do? / 你想做到什麼？
+      description: Describe the task you'd ask Claude for, not the implementation. / 描述你想請 Claude 完成的事，而不是實作方式
+    validations:
+      required: true
+  - type: textarea
+    id: now
+    attributes:
+      label: What happens today? / 目前的狀況

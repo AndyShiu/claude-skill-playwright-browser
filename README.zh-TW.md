@@ -2,6 +2,13 @@
 
 [English](README.md) | **繁體中文**
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/AndyShiu/claude-skill-playwright-browser)](https://github.com/AndyShiu/claude-skill-playwright-browser/releases)
+![Node.js ≥18](https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white)
+![Playwright 1.63](https://img.shields.io/badge/playwright-1.63-2EAD33?logo=playwright&logoColor=white)
+![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
+![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-D97757)
+
 讓 Claude Code 擁有一個**在背景執行的瀏覽器**。你用一般對話交代，例如「截首頁手機版」、「這頁為什麼按送出沒反應」、「幫我健檢結帳頁」，Claude 會自己開瀏覽器、操作、截圖、檢查，再把結果和檔案交給你。不會動到你正在用的瀏覽器，適用於任何專案（前端、後端、非 Node 專案都可以）。
 
 ---
@@ -16,6 +23,16 @@
 | 🧭 **操作流程** | 登入、點選單、填表單、換頁、驗證結果，每一步都能截圖；失敗時自動截下當時的畫面 |
 | 🔐 **需要登入的網站** | 你自己登入一次，之後 Claude 就能用這個登入狀態在背景操作（帳密不會被存下來） |
 | 🧪 **轉成正式測試** | 需要時，把操作流程轉成專案裡的 Playwright Test，放進 CI |
+
+### 實際效果
+
+![各種螢幕尺寸一次截圖](docs/images/responsive-zh.png)
+
+![前端健檢](docs/images/audit-zh.png)
+
+![改版前後視覺比對](docs/images/diff-zh.png)
+
+<sub>以上圖片都是用這個 skill 對一個示範網站實際產生的。</sub>
 
 ## 使用範例
 
@@ -159,4 +176,10 @@ scripts/pw.mjs           執行工具：inspect / shot / audit / run / login / d
 scripts/setup.mjs        跨平台的一次性安裝
 references/analysis.md   健檢結果的解讀方式、門檻值、如何追到原始碼
 references/project-tests.md  把流程轉成專案正式測試（Playwright Test + CI）
+docs/images/                 README 示意圖（用這個 skill 產生）
+CHANGELOG.md                 版本更新紀錄
 ```
+
+## 授權
+
+[MIT](LICENSE) © AndyShiu · 版本更新紀錄見 [CHANGELOG.md](CHANGELOG.md)。

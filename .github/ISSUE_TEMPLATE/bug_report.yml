@@ -1,0 +1,34 @@
+name: Bug report / 問題回報
+description: Something doesn't work as expected / 功能不如預期
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / 發生了什麼事？
+      description: What did you ask Claude, and what went wrong? / 你請 Claude 做什麼、哪裡出錯？
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output / 執行的指令與輸出
+      description: The `pw.mjs` command Claude ran and the JSON it printed (remove any tokens, cookies or internal URLs). / Claude 執行的 `pw.mjs` 指令與輸出的 JSON（請移除 token、cookie 或內部網址）
+      render: shell
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS / 作業系統
+      options: [macOS, Linux, Windows (Git Bash), Windows (PowerShell / cmd)]
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version / Node.js 版本
+      placeholder: "node -v → v22.x"
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser engine / 瀏覽器引擎
+      options: [chromium, firefox, webkit]
