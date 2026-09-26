@@ -27,6 +27,9 @@ try {
 // ---------------------------------------------------------------- args
 const argv = process.argv.slice(2);
 const cmd = argv[0];
+// Git Bash on Windows rewrites arguments that start with "/" into Windows paths
+// (--until-url /dashboard -> C:/Program Files/Git/dashboard). Undo that for our options.
+const MSYS_MANGLED = /^[A-Za-z]:[\\/](?:Program Files(?: \(x86\))?[\\/])?Git(?:[\\/](?:usr|mingw64))?(?=[\\/]|$)/i;
 const opts = { _: [] };
 for (let i = 1; i < argv.length; i++) {
   const a = argv[i];
@@ -38,9 +41,6 @@ for (let i = 1; i < argv.length; i++) {
     else push(k, true);
   } else opts._.push(a);
 }
-// Git Bash on Windows rewrites arguments that start with "/" into Windows paths
-// (--until-url /dashboard -> C:/Program Files/Git/dashboard). Undo that for our options.
-const MSYS_MANGLED = /^[A-Za-z]:[\\/](?:Program Files(?: \(x86\))?[\\/])?Git(?:[\\/](?:usr|mingw64))?(?=[\\/]|$)/i;
 function unmangle(v) {
   if (process.platform !== 'win32' || typeof v !== 'string' || !MSYS_MANGLED.test(v)) return v;
   return v.replace(MSYS_MANGLED, '').replace(/\\/g, '/') || '/';
