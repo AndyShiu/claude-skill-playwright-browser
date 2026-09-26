@@ -3,6 +3,14 @@
 All notable changes to this project are documented here. Versions follow [Semantic Versioning](https://semver.org/).
 本專案的重要變更都記錄在這裡，版本號遵循[語意化版本](https://semver.org/lang/zh-TW/)。
 
+## [1.0.1] - 2026-09-26
+
+### Fixed / 修正
+- Windows: commands using `--until-url`, `--click`, `--wait-for`, `--selector` or `--mask` crashed at startup with `ReferenceError: Cannot access 'MSYS_MANGLED' before initialization` (temporal dead zone in argument parsing). Thanks @DaveTseng2019 (#1) — Windows 上使用這些參數時程式一啟動就崩潰，感謝 @DaveTseng2019 修正
+
+### Docs / 文件
+- README: head-to-head comparison with Claude in Chrome — README 加入與 Claude in Chrome 的實測比較
+
 ## [1.0.0] - 2026-09-25
 
 First public release. 第一個公開版本。
@@ -17,4 +25,5 @@ First public release. 第一個公開版本。
 - Cross-platform setup (`node scripts/setup.mjs`), Node.js 18+, tested on macOS and Windows — 跨平台安裝，macOS 與 Windows 實測通過
 - Git Bash path-conversion handling on Windows — 處理 Windows Git Bash 的路徑轉換
 
+[1.0.1]: https://github.com/AndyShiu/claude-skill-playwright-browser/releases/tag/v1.0.1
 [1.0.0]: https://github.com/AndyShiu/claude-skill-playwright-browser/releases/tag/v1.0.0
